@@ -26,42 +26,47 @@ The system evaluates three retrieval methods:
 - Answerable test questions used for primary Recall/MRR evaluation: 78
 - Unanswerable test questions retained for future abstention experiments: 12
 
-## Repository structure
+## Files
 
-```text
-data/
-  corpus_units.csv
-  corpus_units.jsonl
-  questions.csv
-  questions.jsonl
-  gold_mapping.csv
-  dev_test_split.csv
+Because all materials are uploaded at the repository root, the main files are:
 
-config/
-  parameters.json
+### Dataset
 
-results/
-  retrieval_results_summary.csv
-  bm25_results.csv
-  lsa_results.csv
-  hybrid_results.csv
-  confidence_intervals.csv
-  paired_bootstrap_differences.csv
-  error_examples.csv
-  strict_all_test_metrics.csv
-  bm25_dev_grid.csv
-  lsa_dev_grid.csv
-  hybrid_alpha_dev_grid.csv
+- `corpus_units.csv`
+- `corpus_units.jsonl`
+- `questions.csv`
+- `questions.jsonl`
+- `gold_mapping.csv`
+- `dev_test_split.csv`
 
-docs/
-  corpus_audit.md
-  dataset_audit.md
-  validation_report.md
-  retrieval_evaluation_report.md
+### Configuration
 
-src/
-  evaluate.py
-```
+- `parameters.json`
+
+### Retrieval outputs
+
+- `retrieval_results_summary.csv`
+- `bm25_results.csv`
+- `lsa_results.csv`
+- `hybrid_results.csv`
+- `confidence_intervals.csv`
+- `paired_bootstrap_differences.csv`
+- `error_examples.csv`
+- `strict_all_test_metrics.csv`
+- `bm25_dev_grid.csv`
+- `lsa_dev_grid.csv`
+- `hybrid_alpha_dev_grid.csv`
+
+### Reports
+
+- `corpus_audit.md`
+- `dataset_audit.md`
+- `validation_report.md`
+- `retrieval_evaluation_report.md`
+
+### Code
+
+- `evaluate.py`
 
 ## Main reported test results
 
@@ -75,7 +80,7 @@ Primary retrieval metrics are computed on the 78 answerable test questions.
 
 ## Selected parameters
 
-The selected settings are stored in `config/parameters.json`.
+The selected settings are stored in `parameters.json`.
 
 Key settings:
 
@@ -97,7 +102,7 @@ pip install pandas numpy scikit-learn
 Run:
 
 ```bash
-python src/evaluate.py
+python evaluate.py
 ```
 
 The script computes BM25, TF-IDF+LSA, and BM25+LSA hybrid retrieval metrics and writes result files.
