@@ -1,0 +1,84 @@
+{
+  "corpus_file": "uzllc_labor_constitution_units_v1.csv",
+  "questions_file": "questions_v1_validated.csv",
+  "gold_mapping_file": "gold_mapping_v1_validated.csv",
+  "corpus_units": 245,
+  "test_questions_total": 90,
+  "answerable_test_questions": 78,
+  "unanswerable_test_questions": 12,
+  "evaluation_scope": "Primary Recall@k and MRR@10 are computed on answerable test questions only. Unanswerable questions are retained for future abstention/answerability experiments.",
+  "normalization": "lowercase; Unicode apostrophe variants unified; repeated whitespace removed; non-letter/number punctuation treated as token boundaries",
+  "tokenization": "Unicode-aware word-level tokenization; numbers retained; Uzbek Cyrillic/Latin characters retained",
+  "stopword_handling": "no stopword removal; legal function words and negation markers retained",
+  "retrieval_text": "article_title + normalized_text + legal_topics",
+  "bm25": {
+    "k1": 2.0,
+    "b": 0.9,
+    "selection": "grid search on development answerable questions; selected by MRR@10, then Recall@3, then Recall@1",
+    "grid": {
+      "k1": [
+        1.2,
+        1.5,
+        1.8,
+        2.0
+      ],
+      "b": [
+        0.3,
+        0.5,
+        0.75,
+        0.9
+      ]
+    }
+  },
+  "tfidf": {
+    "analyzer": "word",
+    "ngram_range": [
+      1,
+      2
+    ],
+    "min_df": 1,
+    "max_df": 0.95,
+    "sublinear_tf": true,
+    "norm": "l2",
+    "vocabulary_size": 19288
+  },
+  "lsa": {
+    "n_components": 200,
+    "explained_variance_ratio_sum": 0.9042223788467177,
+    "selection": "grid search on development answerable questions; selected by MRR@10, then Recall@3, then Recall@1",
+    "component_grid": [
+      25,
+      50,
+      75,
+      100,
+      150,
+      200
+    ],
+    "cosine_similarity": "cosine over L2-normalized LSA vectors"
+  },
+  "hybrid": {
+    "formula": "H(q,d)=alpha*minmax(BM25(q,d))+(1-alpha)*minmax(LSA(q,d))",
+    "score_normalization": "per-query min-max normalization for BM25 and LSA scores",
+    "alpha": 0.6,
+    "alpha_grid": [
+      0.0,
+      0.1,
+      0.2,
+      0.3,
+      0.4,
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "selection": "alpha selected on development answerable questions using MRR@10"
+  },
+  "confidence_intervals": {
+    "recall": "Wilson score interval, 95%",
+    "mrr": "nonparametric bootstrap over questions, 10000 resamples, 95%",
+    "paired_difference": "paired bootstrap over questions, 10000 resamples"
+  },
+  "random_seed": 42
+}

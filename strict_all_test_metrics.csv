@@ -1,0 +1,4 @@
+method,test_questions_total,note,Strict_R@1_all_test,Strict_R@1_count,Strict_R@3_all_test,Strict_R@3_count,Strict_R@5_all_test,Strict_R@5_count,Strict_MRR_all_test
+BM25,90,Unanswerable questions treated as misses because no abstention threshold was applied.,0.5222222222222223,47/90,0.7,63/90,0.7777777777777778,70/90,0.6226190476190476
+TF-IDF+LSA,90,Unanswerable questions treated as misses because no abstention threshold was applied.,0.45555555555555555,41/90,0.7,63/90,0.7555555555555555,68/90,0.5794444444444445
+BM25+LSA hybrid,90,Unanswerable questions treated as misses because no abstention threshold was applied.,0.5222222222222223,47/90,0.7111111111111111,64/90,0.7555555555555555,68/90,0.6276058201058201
